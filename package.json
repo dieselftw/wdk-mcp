@@ -2,11 +2,27 @@
   "name": "wdk-mcp",
   "module": "index.ts",
   "type": "module",
+  "scripts": {
+    "start": "bun run src/index.ts",
+    "dev": "bun run --watch src/index.ts",
+    "test": "bun run --watch test.ts"
+  },
   "private": true,
   "devDependencies": {
     "@types/bun": "latest"
   },
   "peerDependencies": {
     "typescript": "^5"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.20.1",
+    "@tetherto/wdk": "^1.0.0-beta.3",
+    "@tetherto/wdk-wallet-btc": "^1.0.0-beta.3",
+    "@tetherto/wdk-wallet-evm": "^1.0.0-beta.3",
+    "dotenv": "^17.2.3",
+    "fastmcp": "^3.20.0",
+    "pino": "^10.0.0",
+    "pino-pretty": "^13.1.2",
+    "zod": "^4.1.12"
   }
 }
