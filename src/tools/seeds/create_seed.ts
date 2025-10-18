@@ -1,6 +1,6 @@
 import { z } from "zod";
 import { type WdkMcpTool } from "../../types/tool";
-import { db } from "../../db/db";
+import { db } from "../../db";
 import WdkManager from "@tetherto/wdk";
 
 const InputSchema = z.object({

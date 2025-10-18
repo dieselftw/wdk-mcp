@@ -1,6 +1,6 @@
 import { z } from "zod";
 import { type WdkMcpTool } from "../../types/tool";
-import { db } from "../../db/db";
+import { db } from "../../db";
 
 const InputSchema = z.object({
   seedId: z.string().describe("The ID of the seed to retrieve"),

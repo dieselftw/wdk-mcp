@@ -69,7 +69,7 @@ export class WalletConfigManager {
   }
   
   // ==========================================================================
-  // Seed CRUD
+  // Seed
   // ==========================================================================
   
   createSeed(seedId: string, seed: Omit<SeedEntry, 'createdAt' | 'updatedAt'>): void {
@@ -125,7 +125,7 @@ export class WalletConfigManager {
   }
   
   // ==========================================================================
-  // Wallet CRUD
+  // Wallet
   // ==========================================================================
   
   createWallet(walletId: string, wallet: Omit<WalletEntry, 'createdAt' | 'updatedAt'>): void {
@@ -224,7 +224,7 @@ export class WalletConfigManager {
   }
   
   // ==========================================================================
-  // API Key CRUD
+  // API Key
   // ==========================================================================
   
   setApiKey(keyName: string, keyValue: string): void {
@@ -258,15 +258,6 @@ export class WalletConfigManager {
     return this.configPath;
   }
   
-  exportDatabase(): WalletDatabase {
-    return JSON.parse(JSON.stringify(this.data));
-  }
-  
-  importDatabase(newData: WalletDatabase): void {
-    this.data = newData;
-    this.save();
-  }
-  
   getStats() {
     return {
       seedCount: Object.keys(this.data.seeds).length,
@@ -278,16 +269,9 @@ export class WalletConfigManager {
 }
 
 // ============================================================================
-// Default Instance
+// Instance
 // ============================================================================
 
-let defaultManager: WalletConfigManager | null = null;
-
-export function getDefaultManager(): WalletConfigManager {
-  if (!defaultManager) {
-    defaultManager = new WalletConfigManager();
-  }
-  return defaultManager;
-}
+export const defaultManager = new WalletConfigManager();
 
 export { encrypt, decrypt };

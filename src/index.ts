@@ -2,7 +2,7 @@ import { FastMCP } from "fastmcp";
 import { z } from "zod";
 import * as tools from "./tools";
 import { toFastMcpTool } from "./types/tool";
-import { db } from "./db/db";
+import { db } from "./db";
 
 // 1. Initialize db (auto-initializes on first access)
 console.log(`Database initialized at: ${db.getConfigPath()}`);
