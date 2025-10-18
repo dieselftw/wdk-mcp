@@ -1,0 +1,81 @@
+import { z } from "zod";
+import { type WdkMcpTool } from "../../types/tool";
+import { db } from "../../db/db";
+import WalletManagerEvm from "@tetherto/wdk-wallet-evm";
+import WalletManagerBtc from "@tetherto/wdk-wallet-btc";
+
+const InputSchema = z.object({
+  walletId: z.string().describe("Unique identifier for the wallet (e.g., 'eth-main', 'btc-savings')"),
+  name: z.string().describe("Display name for the wallet"),
+  seedRef: z.string().describe("The seed ID to use for this wallet"),
+  type: z.enum(['ethereum', 'bitcoin']).describe("Type of wallet to create"),
+  description: z.string().optional().describe("Optional description"),
+  derivationPath: z.string().optional().describe("Custom derivation path (uses default if not provided)"),
+  addressCount: z.number().optional().describe("Number of addresses to generate (default: 1)")
+});
+
+const create_wallet: WdkMcpTool<typeof InputSchema> = {
+  name: "create_wallet",
+  description: "Create a new wallet derived from an existing seed. Automatically generates addresses using the Tether WDK.",
+  parameters: InputSchema,
+  execute: async (args) => {
+    try {
+      // Get the seed
+      const seed = db.getSeed(args.seedRef);
+      if (!seed || !seed.seedphrase) {
+        return {
+          success: false,
+          error: `Seed '${args.seedRef}' not found or has no seed phrase`
+        };
+      }
+      
+      // Generate addresses based on wallet type
+      const addresses: string[] = [];
+      const addressCount = args.addressCount || 1;
+      
+      if (args.type === 'ethereum') {
+        const evmManager = new WalletManagerEvm(seed.seedphrase);
+        
+        for (let i = 0; i < addressCount; i++) {
+          const account = await evmManager.getAccount(i);
+          const address = await account.getAddress();
+          addresses.push(address);
+        }
+      } else if (args.type === 'bitcoin') {
+        const btcManager = new WalletManagerBtc(seed.seedphrase);
+        
+        for (let i = 0; i < addressCount; i++) {
+          const account = await btcManager.getAccount(i);
+          const address = await account.getAddress();
+          addresses.push(address);
+        }
+      }
+      
+      // Store wallet in database
+      db.createWallet(args.walletId, {
+        name: args.name,
+        seedRef: args.seedRef,
+        type: args.type,
+        description: args.description,
+        derivationPath: args.derivationPath || (args.type === 'ethereum' ? "m/44'/60'/0'/0" : "m/84'/0'/0'/0"),
+        addresses: addresses
+      });
+      
+      return {
+        success: true,
+        walletId: args.walletId,
+        type: args.type,
+        addresses: addresses,
+        message: `Wallet '${args.name}' created with ${addresses.length} address(es)`
+      };
+    } catch (error) {
+      return {
+        success: false,
+        error: error instanceof Error ? error.message : String(error)
+      };
+    }
+  }
+};
+
+export { create_wallet };
+
