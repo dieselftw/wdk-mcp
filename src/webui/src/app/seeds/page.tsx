@@ -8,7 +8,7 @@ export default async function SeedsPage() {
 
   return (
     <DashboardLayout>
-      <SeedsClient initialSeeds={seeds} />
+      <SeedsClient initialSeeds={seeds || []} />
     </DashboardLayout>
   )
 }

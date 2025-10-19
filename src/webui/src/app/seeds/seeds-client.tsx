@@ -65,7 +65,7 @@ export function SeedsClient({ initialSeeds }: { initialSeeds: Seed[] }) {
     <div className="space-y-6">
       <div className="flex items-center justify-between">
         <div>
-          <h1 className="text-3xl font-bold tracking-tight bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
+          <h1 className="text-3xl font-bold tracking-tight text-gray-200">
             Seeds
           </h1>
           <p className="text-muted-foreground">
@@ -82,7 +82,7 @@ export function SeedsClient({ initialSeeds }: { initialSeeds: Seed[] }) {
           >
             <RefreshCw className={`h-4 w-4 ${isRefreshing ? 'animate-spin' : ''}`} />
           </Button>
-          <Button onClick={() => setCreateOpen(true)} className="bg-primary hover:bg-primary/90">
+          <Button onClick={() => setCreateOpen(true)} className="bg-gray-300 hover:bg-primary/90 cursor-pointer">
             <Plus className="mr-2 h-4 w-4" />
             Create Seed
           </Button>
@@ -112,8 +112,8 @@ export function SeedsClient({ initialSeeds }: { initialSeeds: Seed[] }) {
                 <CardHeader className="pb-3">
                   <div className="flex items-start justify-between">
                     <div className="flex items-center gap-3">
-                      <div className="flex h-12 w-12 items-center justify-center rounded-lg bg-primary/10 border border-primary/20">
-                        <Sprout className="h-6 w-6 text-primary" />
+                      <div className="flex h-12 w-12 items-center justify-center rounded-lg border">
+                        <Sprout className="h-6 w-6" />
                       </div>
                       <div>
                         <CardTitle className="text-base">{seed.name}</CardTitle>

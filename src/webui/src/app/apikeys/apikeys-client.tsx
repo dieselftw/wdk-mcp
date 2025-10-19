@@ -73,7 +73,7 @@ export function ApiKeysClient({ initialApiKeys }: { initialApiKeys: ApiKey[] }) 
     <div className="space-y-6">
       <div className="flex items-center justify-between">
         <div>
-          <h1 className="text-3xl font-bold tracking-tight bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
+          <h1 className="text-3xl font-bold tracking-tight text-gray-200">
             API Keys
           </h1>
           <p className="text-muted-foreground">
@@ -86,11 +86,11 @@ export function ApiKeysClient({ initialApiKeys }: { initialApiKeys: ApiKey[] }) 
             size="icon"
             onClick={handleRefresh}
             disabled={isRefreshing}
-            className="border-primary/20 hover:border-primary/40"
+            className="border-primary/20 hover:border-primary/40 cursor-pointer"
           >
             <RefreshCw className={`h-4 w-4 ${isRefreshing ? 'animate-spin' : ''}`} />
           </Button>
-          <Button onClick={() => setCreateOpen(true)} className="bg-primary hover:bg-primary/90">
+          <Button onClick={() => setCreateOpen(true)} className="bg-gray-300 hover:bg-primary/90 cursor-pointer">
             <Plus className="mr-2 h-4 w-4" />
             Create API Key
           </Button>

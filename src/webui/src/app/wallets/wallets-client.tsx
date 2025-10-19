@@ -78,7 +78,7 @@ export function WalletsClient({
     <div className="space-y-6">
       <div className="flex items-center justify-between">
         <div>
-          <h1 className="text-3xl font-bold tracking-tight bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
+          <h1 className="text-3xl font-bold tracking-tight text-gray-200">
             Wallets
           </h1>
           <p className="text-muted-foreground">
@@ -93,9 +93,9 @@ export function WalletsClient({
             disabled={isRefreshing}
             className="border-primary/20 hover:border-primary/40"
           >
-            <RefreshCw className={`h-4 w-4 ${isRefreshing ? 'animate-spin' : ''}`} />
+            <RefreshCw className={`h-4 w-4 cursor-pointer ${isRefreshing ? 'animate-spin' : ''}`} />
           </Button>
-          <Button onClick={() => setCreateOpen(true)} className="bg-primary hover:bg-primary/90">
+          <Button onClick={() => setCreateOpen(true)} className="bg-gray-300 hover:bg-primary/90 cursor-pointer">
             <Plus className="mr-2 h-4 w-4" />
             Create Wallet
           </Button>
@@ -125,8 +125,8 @@ export function WalletsClient({
                 <CardHeader className="pb-3">
                   <div className="flex items-start justify-between">
                     <div className="flex items-center gap-3">
-                      <div className="flex h-12 w-12 items-center justify-center rounded-lg bg-primary/10 border border-primary/20">
-                        <Wallet className="h-6 w-6 text-primary" />
+                      <div className="flex h-12 w-12 items-center justify-center rounded-lg border border-primary/20">
+                        <Wallet className="h-6 w-6" />
                       </div>
                       <div>
                         <CardTitle className="text-base">{wallet.name}</CardTitle>
@@ -192,7 +192,7 @@ export function WalletsClient({
                     <Button 
                       variant="outline" 
                       size="sm" 
-                      className="flex-1 border-primary/20 hover:border-primary/40"
+                      className="flex-1 border-primary/20 hover:border-primary/40 cursor-pointer"
                       onClick={() => setEditWallet(wallet)}
                     >
                       <Edit className="mr-1 h-3 w-3" />
@@ -201,7 +201,7 @@ export function WalletsClient({
                     <Button 
                       variant="outline" 
                       size="sm" 
-                      className="border-destructive/20 text-destructive hover:border-destructive/40 hover:bg-destructive/10"
+                      className="border-destructive/20 text-destructive hover:border-destructive/40 hover:bg-destructive/10 cursor-pointer"
                       onClick={() => setDeleteWalletItem(wallet)}
                     >
                       <Trash2 className="h-3 w-3" />

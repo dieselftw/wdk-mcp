@@ -8,7 +8,7 @@ export default async function ApiKeysPage() {
 
   return (
     <DashboardLayout>
-      <ApiKeysClient initialApiKeys={apiKeys} />
+      <ApiKeysClient initialApiKeys={apiKeys || []} />
     </DashboardLayout>
   )
 }

@@ -24,7 +24,7 @@ export default async function Home() {
     <DashboardLayout>
       <div className="space-y-6">
         <div>
-          <h1 className="text-3xl font-bold tracking-tight bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
+          <h1 className="text-3xl font-bold tracking-tight text-gray-200">
             Dashboard
           </h1>
           <p className="text-muted-foreground">
@@ -114,8 +114,8 @@ export default async function Home() {
                     const timeAgo = new Date(wallet.createdAt).toLocaleDateString()
                     return (
                       <div key={wallet.id} className="flex items-center">
-                        <div className="flex h-9 w-9 items-center justify-center rounded-full bg-primary/10">
-                          <CreditCard className="h-4 w-4 text-primary" />
+                        <div className="flex h-9 w-9 items-center justify-center rounded-full border border-primary/20">
+                          <CreditCard className="h-4 w-4" />
                         </div>
                         <div className="ml-4 space-y-1 flex-1">
                           <p className="text-sm font-medium leading-none">{wallet.name}</p>
@@ -141,24 +141,24 @@ export default async function Home() {
               </CardDescription>
             </CardHeader>
             <CardContent>
-              <div className="space-y-2">
+              <div className="flex flex-col gap-4">
                 <Link href="/wallets">
-                  <button className="w-full rounded-lg border bg-card p-3 text-left text-sm transition-colors hover:bg-accent">
+                  <Button className="w-full text-white text-left rounded-lg border bg-card p-3 text-sm transition-colors hover:bg-accent/30">
                     <CreditCard className="inline h-4 w-4 mr-2" />
                     Create new wallet
-                  </button>
+                  </Button>
                 </Link>
                 <Link href="/seeds">
-                  <button className="w-full rounded-lg border bg-card p-3 text-left text-sm transition-colors hover:bg-accent">
+                  <Button className="w-full text-white text-left rounded-lg border bg-card p-3 text-sm transition-colors hover:bg-accent/30">
                     <Activity className="inline h-4 w-4 mr-2" />
                     Manage seed phrases
-                  </button>
+                  </Button>
                 </Link>
                 <Link href="/apikeys">
-                  <button className="w-full rounded-lg border bg-card p-3 text-left text-sm transition-colors hover:bg-accent">
+                  <Button className="w-full text-white text-left rounded-lg border bg-card p-3 text-sm transition-colors hover:bg-accent/30">
                     <Key className="inline h-4 w-4 mr-2" />
                     Add API key
-                  </button>
+                  </Button>
                 </Link>
               </div>
             </CardContent>

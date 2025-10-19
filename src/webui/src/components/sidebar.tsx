@@ -22,8 +22,8 @@ export function Sidebar() {
     <div className="flex h-full flex-col gap-2">
       <div className="flex h-14 items-center border-b px-4 lg:h-[60px] lg:px-6 bg-sidebar">
         <Link href="/" className="flex items-center gap-2 font-semibold">
-          <Wallet className="h-6 w-6 text-primary" />
-          <span className="bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent font-bold">WDK</span>
+          <Wallet className="h-6 w-6" />
+          <span className="text-gray-200 font-bold">Delvisor</span>
         </Link>
       </div>
       <ScrollArea className="flex-1 px-3">
@@ -49,18 +49,6 @@ export function Sidebar() {
           })}
         </div>
       </ScrollArea>
-      <div className="mt-auto p-4">
-        <Separator className="mb-4" />
-        <div className="flex items-center gap-3 text-sm">
-          <div className="flex h-8 w-8 items-center justify-center rounded-full bg-primary text-primary-foreground">
-            U
-          </div>
-          <div className="flex-1">
-            <p className="font-medium">User Name</p>
-            <p className="text-xs text-muted-foreground">user@example.com</p>
-          </div>
-        </div>
-      </div>
     </div>
   )
 }
