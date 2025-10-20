@@ -168,6 +168,18 @@ export class WalletConfigManager {
     }
     return wallets;
   }
+
+  getAddressIndex(walletId: string, address: string): number | undefined {
+    const wallet = this.data.wallets[walletId];
+    if (!wallet || !wallet.addresses) return undefined;
+
+    // Find address index within the wallet
+    const index = wallet.addresses.findIndex(
+      (addr: string) => addr.toLowerCase() === address.toLowerCase()
+    );
+
+    return index !== -1 ? index : undefined;
+  }
   
   updateWallet(walletId: string, updates: Partial<Omit<WalletEntry, 'createdAt' | 'updatedAt'>>): void {
     const oldWallet = this.data.wallets[walletId];

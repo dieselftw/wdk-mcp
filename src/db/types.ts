@@ -22,8 +22,9 @@ export interface SeedEntry {
 export interface WalletEntry {
   name: string;
   seedRef: string;
-  type: 'ethereum' | 'bitcoin' | string;
+  type: 'ethereum' | 'bitcoin' | 'hoodi' | 'string';
   description?: string;
+  provider: string;
   derivationPath?: string;
   addresses: string[];
   networks?: Record<string, { rpc: string; chainId?: number }>;

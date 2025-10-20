@@ -12,6 +12,8 @@ export { get_wallet } from "./wallets/get_wallet";
 export { add_wallet_address } from "./wallets/add_wallet_address";
 export { update_wallet } from "./wallets/update_wallet";
 export { delete_wallet } from "./wallets/delete_wallet";
+export { get_balance } from "./wallets/get_balance";
+export { send_transaction } from "./wallets/send_transaction";
 
 // API Key tools
 export { set_api_key } from "./apikeys/set_api_key";

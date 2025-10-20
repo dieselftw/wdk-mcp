@@ -34,12 +34,18 @@ const startFastMCP = async () => {
   const toolList = [
     tools.create_seed, tools.list_seeds, tools.get_seed, tools.update_seed, tools.delete_seed,
     tools.create_wallet, tools.list_wallets, tools.get_wallet, tools.add_wallet_address,
-    tools.update_wallet, tools.delete_wallet,
+    tools.update_wallet, tools.delete_wallet, tools.get_balance, tools.send_transaction,
     tools.set_api_key, tools.get_api_key, tools.list_api_keys, tools.delete_api_key,
     tools.get_database_stats,
   ];
 
-  toolList.forEach(tool => server.addTool(toFastMcpTool(tool)));
+  toolList.forEach((tool, index) => {
+    if (!tool) {
+      console.error(`Tool at index ${index} is undefined`);
+      return;
+    }
+    server.addTool(toFastMcpTool(tool));
+  });
 
   server.start({ transportType: "httpStream", httpStream: { port: 8080 } });
   spinner.succeed(c.green("🔥 FastMCP server running on http://localhost:8080"));

@@ -18,7 +18,7 @@ export async function getSeeds() {
   }
 }
 
-export async function getSeed(seedId: string) {
+export function getSeed(seedId: string) {
   try {
     const seed = db.getSeed(seedId)
     if (!seed) {
